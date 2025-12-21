@@ -14,61 +14,75 @@ def printBoard(board):
 def game():
     turn = 'X'
     count = 0
-for i in range(10):
-    printBoard(board)
-    print("Its your turn!" + turn + " Move to which place?")
-    move=input()
-    if board[move] == ' ':
-       board[move] = turn
-       count += 1
-    else:
-       print("That place is already filled.\nMove to which place?")
-       continue
-    if count >= 5:
-        if (board['7'] == board['8'] == board['9'] == ' '):
-            printBoard(board)
-            print("Game Over.\n")
-            print(" **** " + turn + " won ****")
-            break
-        elif (board['4'] == board['5'] == board['6'] == ' '):
-            printBoard(board)
-            print("Game Over.\n")
-            print(" ****** " + turn + " won ******")
-            break
-        elif (board['1'] == board['2'] == board['3'] == ' '):
-            printBoard(board)
-            print("Game Over.\n")
-            print(" ****** " + turn + " won ******")
-            break
-        elif (board['2'] == board['5'] == board['8'] == ' '):
-            printBoard(board)
-            print("Game Over.\n")
-            print(" ****** " + turn + " won ******")
-            break
-        elif (board['3'] == board['6'] == board['9'] == ' '):
-            printBoard(board)
-            print("Game Over.\n")
-            print(" ****** " + turn + " won ******")
-            break
-        elif (board['7'] == board['5'] == board['3'] == ' '):
-            printBoard(board)
-            print("Game Over.\n")
-            print(" ****** " + turn + " won ******")
-            break
-        elif (board['1'] == board['5'] == board['9'] == ' '):
-            printBoard(board)
-            print("Game Over.\n")
-            print(" ****** " + turn + " won ******")
-            break
-        
+    for i in range(10):
+        printBoard(board)
+        print("Its your turn!" + turn + " Move to which place?")
+        move = input()
+
+        if move not in board_keys:
+            print("Invalid move! Please choose a number between 1-9.")
+            continue
+
+        if board[move] == ' ':
+            board[move] = turn
+            count += 1
+        else:
+            print("That place is already filled.\nMove to which place?")
+            continue
+
+        if count >= 5:
+            if board['7'] == board['8'] == board['9'] != ' ' and board['7'] == turn:
+                printBoard(board)
+                print("Game Over.\n")
+                print(" ****** " + turn + " won ******")
+                break
+            elif board['4'] == board['5'] == board['6'] != ' ' and board['4'] == turn:
+                printBoard(board)
+                print("Game Over.\n")
+                print(" ****** " + turn + " won ******")
+                break
+            elif board['1'] == board['2'] == board['3'] != ' ' and board['1'] == turn:
+                printBoard(board)
+                print("Game Over.\n")
+                print(" ****** " + turn + " won ******")
+                break
+            elif board['1'] == board['4'] == board['7'] != ' ' and board['1'] == turn:
+                printBoard(board)
+                print("Game Over.\n")
+                print(" ****** " + turn + " won ******")
+                break
+            elif board['2'] == board['5'] == board['8'] != ' ' and board['2'] == turn:
+                printBoard(board)
+                print("Game Over.\n")
+                print(" ****** " + turn + " won ******")
+                break
+            elif board['3'] == board['6'] == board['9'] != ' ' and board['3'] == turn:
+                printBoard(board)
+                print("Game Over.\n")
+                print(" ****** " + turn + " won ******")
+                break
+            elif board['1'] == board['5'] == board['9'] != ' ' and board['1'] == turn:
+                printBoard(board)
+                print("Game Over.\n")
+                print(" ****** " + turn + " won ******")
+                break
+            elif board['7'] == board['5'] == board['3'] != ' ' and board['7'] == turn:
+                printBoard(board)
+                print("Game Over.\n")
+                print(" ****** " + turn + " won ******")
+                break
+
         if count == 9:
-            print("\n Game over\n")
+            printBoard(board)
+            print("\nGame over\n")
             print("It's a Tie!!")
-        
+            break
+
         if turn == 'X':
             turn = 'O'
         else:
             turn = 'X'
+
     restart = input("Do you want to play Again? (y/n)")
     if restart == "y" or restart == "Y":
         for key in board_keys:
